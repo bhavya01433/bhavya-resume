@@ -94,7 +94,7 @@ const LatestWork = () => {
                           height={30}
                         />
                       </div>
-                      <p>Client: {value?.client}</p>
+                      <p>{value?.description}</p>
                     </div>
                   </div>
                 );
