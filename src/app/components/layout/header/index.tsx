@@ -1,7 +1,7 @@
 "use client";
 
 // import { useState } from "react";
-// import Logo from "../logo";
+import Logo from "../logo";
 
 const Header = () => {
   const handleDownloadPDF = () => {
@@ -12,7 +12,9 @@ const Header = () => {
       <div className="container">
         <nav className="py-7">
           <div className="flex items-center gap-4 sm:gap-8">
-            <div>{/* <Logo /> */}</div>
+            <div>
+              <Logo />
+            </div>
 
             <button
               onClick={handleDownloadPDF}
