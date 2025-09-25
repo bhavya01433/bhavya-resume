@@ -26,7 +26,7 @@ const LatestWork = () => {
         <div className="container">
           <div className="py-16 xl:py-32 ">
             <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-              <h2>Latest Works</h2>
+              <h2>Latest Projects</h2>
               <p className="text-xl text-orange-500">
                 ( {workData?.length || "00"} )
               </p>

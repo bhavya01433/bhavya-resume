@@ -37,6 +37,7 @@ const EducationSkills = () => {
               <p className="text-xl text-orange-500">( 03 )</p>
             </div>
             <div className="flex flex-col lg:flex-row items-center gap-10 xl:gap-20">
+              {/* Education Section */}
               <div className="w-full lg:max-w-md flex flex-col gap-0 xl:gap-8">
                 {educationData?.education?.map((value: any, index: any) => {
                   return (
@@ -52,41 +53,24 @@ const EducationSkills = () => {
                   );
                 })}
               </div>
+
+              {/* Skills Section */}
               <div className="grid grid-cols-2 xs:grid-cols-3 gap-5 xl:gap-7 w-full">
                 {educationData?.skills?.map((value: any, index: any) => {
                   return (
                     <div
                       key={index}
-                      className="p-4 xl:p-6 border border-softGray rounded-lg flex flex-col gap-5 sm:gap-10 items-center justify-between"
+                      className="p-4 xl:p-6 border border-gray-300 rounded-lg flex flex-col gap-4 items-center"
                     >
-                      <div className="flex flex-col items-center gap-5">
-                        <Image
-                          src={value?.icon}
-                          alt="icon"
-                          width={70}
-                          height={70}
-                        />
-                        <p className="text-black font-normal">{value?.name}</p>
-                      </div>
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <svg
-                            key={i}
-                            width="9"
-                            height="9"
-                            viewBox="0 0 9 9"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <rect
-                              width="9"
-                              height="9"
-                              rx="4.5"
-                              fill={i < value?.rating ? "#FE4300" : "#C0D8E0"}
-                            />
-                          </svg>
-                        ))}
-                      </div>
+                      <Image
+                        src={value?.icon}
+                        alt="icon"
+                        width={70}
+                        height={70}
+                      />
+                      <p className="text-black font-normal text-center">
+                        {value?.name}
+                      </p>
                     </div>
                   );
                 })}
