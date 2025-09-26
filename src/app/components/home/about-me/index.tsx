@@ -34,9 +34,18 @@ const AboutMe = () => {
 
               <div className="w-full lg:max-w-2xl flex-1">
                 <p>
-                  Delivered 2 websites, 3 AI tools, and 50+ UI components for
-                  WrapPixel’s Nice Admin; currently staging ‘The Luxe Legacy
-                  Show website.
+                  I’m a Front-End & AI Developer passionate about crafting
+                  interactive, scalable, and human-centered web experiences.
+                  Over the past year, I’ve delivered 2 live websites, 3
+                  AI-powered tools, and 100+ reusable UI components during
+                  internships at WrapPixel and Cognifyz Technologies. My focus
+                  is building solutions that blend modern web tech (Next.js,
+                  React, Tailwind) with AI integration (Gemini, Convex,
+                  automation tools) to solve real-world problems. I thrive on
+                  transforming raw ideas into polished products that perform.
+                  Currently, I’m seeking opportunities to contribute as a
+                  Front-End/AI Developer where I can push product performance,
+                  create seamless user experiences, and keep learning at scale.
                 </p>
 
                 <div className="grid grid-cols-3 py-10 xl:py-16 gap-5 border-b border-mistGray">
