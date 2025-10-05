@@ -27,9 +27,9 @@ const LatestWork = () => {
           <div className="py-16 xl:py-32 ">
             <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
               <h2>Latest Projects</h2>
-              <p className="text-xl text-orange-500">
+              {/* <p className="text-xl text-orange-500">
                 ( {workData?.length || "00"} )
-              </p>
+              </p> */}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 xl:gap-y-12">
               {workData?.map((value: any, index: any) => {
@@ -87,12 +87,19 @@ const LatestWork = () => {
                         >
                           <h5>{value?.title}</h5>
                         </a>
-                        <Image
-                          src={"/images/icon/right-arrow-icon.svg"}
-                          alt="right-arrow-icon"
-                          width={30}
-                          height={30}
-                        />
+
+                        <a
+                          href={value.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Image
+                            src={"/images/icon/right-arrow-icon.svg"}
+                            alt="right-arrow-icon"
+                            width={30}
+                            height={30}
+                          />
+                        </a>
                       </div>
                       <p>{value?.description}</p>
                     </div>
