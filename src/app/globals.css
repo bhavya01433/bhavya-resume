@@ -6,26 +6,107 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Smooth Section Transitions */
+section {
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+/* Scroll Reveal Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section Transition Effect */
+.section-transition {
+  position: relative;
+}
+
+.section-transition::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 0, 0, 0.1),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dark .section-transition::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+}
+
+.section-transition:hover::before {
+  opacity: 1;
+}
+
+/* Custom Scrollbar for Sticky Sections */
+@layer utilities {
+  .sticky-section::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .sticky-section::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .sticky-section::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+  }
+  
+  .sticky-section::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  .dark .sticky-section::-webkit-scrollbar-thumb {
+    background: #4b5563;
+  }
+  
+  .dark .sticky-section::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
   height: 100%;
+  background: #F5F5F0;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0%;
-  background-color: #FE4300; 
-  transition: height 0.3s ease;
-  z-index: 0;
+.dark body {
+  background: #1a1a1a;
+  color: #f5f5f0;
 }
 
-button:hover::before {
-  height: 100%;
+/* Minimal Button Styles - Apple-style */
+button {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
 .wave {
@@ -47,16 +128,90 @@ button:hover::before {
   100% { transform: rotate( 0.0deg) }
 }
 
+/* Smooth Scroll Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #1a1a1a 0%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #f5f5f0 0%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass {
+  background: rgba(26, 26, 26, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Section Dividers */
+.section-divider {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.3),
+    transparent
+  );
+}
+
 
 
 
 
 @theme {
-  --color-primary: #FE4300;
+  --color-primary: #D4AF37;
+  --color-primary-light: #F4D03F;
+  --color-primary-dark: #B8941F;
   --color-secondary: #868686;
   --color-softGray: #F0F0F0;
   --color-mistGray: #D7DCDD;
   --color-gray: #C0D8E0;
+  --color-dark: #1a1a1a;
+  --color-light: #fafafa;
 
   --breakpoint-xs: 425px;
 }
@@ -69,7 +224,7 @@ button:hover::before {
     @apply text-secondary text-sm font-normal;
   }
   .input {
-    @apply w-full border-b border-gray focus:border-primary focus:outline-none py-2;
+    @apply w-full border-b border-gray dark:border-gray-600 focus:border-primary focus:outline-none py-2 bg-transparent text-black dark:text-white transition-colors duration-300;
   }
 }
 

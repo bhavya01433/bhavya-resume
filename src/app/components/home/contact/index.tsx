@@ -2,6 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const Contact = () => {
     const [contactData, setContactData] = useState<any>(null);
@@ -12,6 +15,8 @@ const Contact = () => {
         email: "",
         message: ""
     });
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,10 +34,12 @@ const Contact = () => {
     }, []);
 
     const reset = () => {
-        formData.name = "";
-        formData.number = "";
-        formData.email = "";
-        formData.message = "";
+        setFormData({
+            name: "",
+            number: "",
+            email: "",
+            message: ""
+        });
     };
 
     const handleSubmit = async (e: any) => {
@@ -65,98 +72,226 @@ const Contact = () => {
         }));
     };
 
+    const formVariants = {
+        hidden: { opacity: 0, x: -30 },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut" as const,
+            },
+        },
+    };
+
+    const linksVariants = {
+        hidden: { opacity: 0, x: 30 },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut" as const,
+            },
+        },
+    };
+
     return (
-        <section className="no-print">
-            <div className="container">
-                <div className="pt-16 md:pt-32 pb-20">
-                    <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-                        <h2>Contact Me</h2>
-                        {/* <p className="text-xl text-orange-500">( 05 )</p> */}
-                    </div>
+        <section ref={ref} className="no-print relative bg-gray-50 dark:bg-[#1a1a1a] py-20 md:py-32 overflow-hidden transition-colors duration-300">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {/* Circle Pattern Overlay */}
+                <div className="absolute inset-0 opacity-[0.02]" style={{
+                    backgroundImage: `radial-gradient(circle at 2px 2px, rgba(0,0,0,0.1) 1px, transparent 0)`,
+                    backgroundSize: '40px 40px'
+                }} />
+                
+                <motion.div
+                    className="absolute top-0 left-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl transform -translate-x-1/2"
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.4, 0.6, 0.4],
+                    }}
+                    transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-primary/4 rounded-full blur-3xl"
+                    animate={{
+                        scale: [1, 1.15, 1],
+                        opacity: [0.3, 0.5, 0.3],
+                        x: [0, 30, 0],
+                    }}
+                    transition={{
+                        duration: 24,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                />
+            </div>
+            
+            {/* Section Divider */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+            
+            <div className="container relative z-10">
+                <div className="pb-20">
+                    <motion.div
+                        className="mb-16 md:mb-20"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-black dark:text-white mb-4 transition-colors duration-300">
+                            Contact Me
+                        </h2>
+                        <div className="w-16 h-0.5 bg-black dark:bg-white transition-colors duration-300" />
+                    </motion.div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        <form onSubmit={handleSubmit}>
+                        <motion.form
+                            onSubmit={handleSubmit}
+                            variants={formVariants}
+                            initial="hidden"
+                            animate={isInView ? "visible" : "hidden"}
+                        >
                             <div className="flex flex-col gap-7 sm:gap-12">
                                 <div className="grid grid-cols-2 gap-8">
-                                    <div>
-                                        <label htmlFor="name" className="label">Name *</label>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                                        transition={{ delay: 0.2 }}
+                                    >
+                                        <label htmlFor="name" className="label block mb-2 font-medium text-black dark:text-white transition-colors duration-300">Name *</label>
                                         <input
                                             required
-                                            className="input"
+                                            className="input focus:border-primary/50 transition-colors duration-300"
                                             id="name"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleChange}
                                         />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="number" className="label">Phone *</label>
+                                    </motion.div>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                                        transition={{ delay: 0.3 }}
+                                    >
+                                        <label htmlFor="number" className="label block mb-2 font-medium text-black dark:text-white transition-colors duration-300">Phone *</label>
                                         <input
                                             required
-                                            className="input"
+                                            className="input focus:border-primary/50 transition-colors duration-300"
                                             id="number"
-                                            type="number"
+                                            type="tel"
                                             name="number"
                                             value={formData.number}
                                             onChange={handleChange}
                                         />
-                                    </div>
+                                    </motion.div>
                                 </div>
-                                <div>
-                                    <label htmlFor="email" className="label">Email *</label>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                                    transition={{ delay: 0.4 }}
+                                >
+                                    <label htmlFor="email" className="label block mb-2 font-medium text-black dark:text-white transition-colors duration-300">Email *</label>
                                     <input
                                         required
-                                        className="input"
+                                        className="input focus:border-primary/50 transition-colors duration-300"
                                         id="email"
                                         type="email"
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
                                     />
-                                </div>
-                                <div>
-                                    <label htmlFor="message" className="label">Message *</label>
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                                    transition={{ delay: 0.5 }}
+                                >
+                                    <label htmlFor="message" className="label block mb-2 font-medium text-black dark:text-white transition-colors duration-300">Message *</label>
                                     <textarea
                                         required
-                                        className="input"
+                                        className="input focus:border-primary/50 transition-colors duration-300 resize-none"
                                         name="message"
                                         id="message"
                                         value={formData.message}
                                         onChange={handleChange}
-                                        rows={2}
+                                        rows={4}
                                     />
-                                </div>
+                                </motion.div>
                                 {submitted &&
-                                    <div className="flex items-center gap-2">
+                                    <motion.div
+                                        className="flex items-center gap-2 p-4 bg-green-50 border border-green-200 rounded-lg"
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ type: "spring", stiffness: 200 }}
+                                    >
                                         <Image src={"/images/icon/success-icon.svg"} alt="success-icon" width={30} height={30} />
-                                        <p className="text-secondary">Great!!! Email has been Successfully Sent. We will get in touch asap.</p>
-                                    </div>
+                                        <p className="text-green-700 font-medium">Great!!! Email has been Successfully Sent. We will get in touch asap.</p>
+                                    </motion.div>
                                 }
-                                <button type="submit" className="relative overflow-hidden cursor-pointer w-fit py-2 sm:py-3 md:py-5 px-4 sm:px-5 md:px-7 border border-primary rounded-full group">
+                                <motion.button
+                                    type="submit"
+                                    className="relative overflow-hidden cursor-pointer w-fit py-2 sm:py-3 md:py-5 px-4 sm:px-5 md:px-7 border border-primary rounded-full group"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                                    transition={{ delay: 0.6 }}
+                                >
                                     <span className="relative z-10 text-xl font-medium text-primary group-hover:text-white transition-colors duration-300">Send Now</span>
-                                </button>
-
+                                </motion.button>
                             </div>
-                        </form>
-                        <div className="flex flex-col sm:flex-row md:flex-col justify-between gap-5 md:gap-20 items-center md:items-end">
+                        </motion.form>
+                        <motion.div
+                            className="flex flex-col sm:flex-row md:flex-col justify-between gap-5 md:gap-20 items-center md:items-end"
+                            variants={linksVariants}
+                            initial="hidden"
+                            animate={isInView ? "visible" : "hidden"}
+                        >
                             <div className="flex flex-wrap flex-row md:flex-col items-start md:items-end gap-4 md:gap-6">
                                 {contactData?.socialLinks?.map((value: any, index: any) => {
                                     return (
-                                        <div key={index}>
-                                            <Link href={value?.href} className="text-base sm:text-lg font-normal text-secondary hover:text-primary">{value?.title}</Link>
-                                        </div>
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                                            transition={{ delay: 0.3 + index * 0.1 }}
+                                        >
+                                            <Link
+                                                href={value?.href}
+                                                className="text-base sm:text-lg font-medium text-secondary dark:text-gray-400 hover:text-primary transition-colors duration-300 relative group/link"
+                                            >
+                                                {value?.title}
+                                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover/link:w-full transition-all duration-300" />
+                                            </Link>
+                                        </motion.div>
                                     )
                                 })}
                             </div>
                             <div className="flex flex-wrap justify-center gap-5 lg:gap-11 items-end">
                                 {contactData?.contactInfo?.map((value: any, index: any) => {
                                     return (
-                                        <div key={index}>
-                                            <Link href={value?.link} className="text-base lg:text-lg text-black font-normal border-b border-black pb-3 hover:text-primary hover:border-primary">{value?.label}</Link>
-                                        </div>
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                                            transition={{ delay: 0.4 + index * 0.1 }}
+                                        >
+                                            <Link
+                                                href={value?.link}
+                                                className="text-base lg:text-lg text-black dark:text-white font-semibold border-b-2 border-black dark:border-white pb-3 hover:text-primary hover:border-primary transition-all duration-300"
+                                            >
+                                                {value?.label}
+                                            </Link>
+                                        </motion.div>
                                     )
                                 })}
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </div>
