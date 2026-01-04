@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Personal Portfolio Website
 
-## Getting Started
+- A modern, performance-focused developer portfolio website built to showcase projects, technical skills, and professional experience in Frontend Development and AI-powered applications.
 
-First, run the development server:
+- This portfolio is designed with a strong emphasis on clean UI/UX, responsiveness, performance optimization, and real-world project presentation, rather than visual gimmicks.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Frontend: React.js, Next.js, TypeScript
 
-## Learn More
+- Styling: Tailwind CSS, CSS Modules
 
-To learn more about Next.js, take a look at the following resources:
+- Tools: Git, GitHub
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Deployment: Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Highlights
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Mobile-first, responsive design
+
+- Clean and minimal professional UI
+
+- Optimized performance and SEO-friendly structure
+
+- Real project showcases with practical use cases
+
+🌐 Live Demo
+
+🔗 Live Website: https://bhavya-resume.vercel.app/
+
+📄 Projects Highlighted
+
+The portfolio includes:
+
+- AI-powered web applications
+
+- Frontend-focused systems with real business logic
+
+- Projects demonstrating API integration, UI state handling, and clean architecture
+
+Each project includes:
+
+- Clear description
+
+- Tech stack used
+
+- Problem statement & solution approach
